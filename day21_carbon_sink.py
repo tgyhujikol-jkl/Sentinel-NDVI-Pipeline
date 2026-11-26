@@ -1,3 +1,5 @@
+
+
 import os
 import numpy as np
 from osgeo import gdal
@@ -20,6 +22,8 @@ ndvi = ds.GetRasterBand(1).ReadAsArray().astype(np.float32)
 # 外企规范 2：经验公式模拟
 # 真实项目必须查阅当地树种的林业标准（如：生物量 = a * NDVI + b）
 # 这里我们用模拟系数：假设碳密度（吨/公顷）= 500 * NDVI * 0.5
+# Carbon Fraction default: 0.5 (Source: IPCC 2006 Guidelines, Vol 4, Ch 2)
+# Note: Biomass coefficients here are simulated. Real projects require local standard citations.
 carbon_per_ha = (500 * ndvi) * 0.5
 
 # 外企规范 3：业务数据清洗
